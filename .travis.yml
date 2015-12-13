@@ -1,0 +1,29 @@
+sudo: required
+dist: trusty
+
+language: cpp
+compiler:
+  - gcc
+
+env:
+  - QTC_SOURCE="$TRAVIS_BUILD_DIR/qt-creator" QTC_BUILD="$TRAVIS_BUILD_DIR/qt-creator-build" QTC_VERSION="3.5.1"
+
+before_install:
+  - sudo add-apt-repository ppa:beineri/opt-qt55-trusty
+  - sudo apt-get -qq update
+
+install:
+  - sudo apt-get -qq -y install qt55base qt55tools qt55svg p7zip
+  - git clone https://github.com/qtproject/qt-creator.git
+  - pushd qt-creator && git checkout v3.5.1 && popd
+  - wget "http://download.qt.io/snapshots/qtcreator/3.5.1/175/installer_source/qtcreator_linux-g++-Rhel6.6-x86.7z"
+  - 7zr x -o./qt-creator-build qtcreator_linux-g++-Rhel6.6-x86.7z
+
+before_script:
+  - chmod +x /opt/qt55/bin/qt55-env.sh
+
+script:
+  - ./opt/qt55/bin/qt55-env.sh
+  - mkdir -p build && cd build
+  - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release
+  - make
