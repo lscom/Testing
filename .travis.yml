@@ -23,7 +23,10 @@ before_script:
   - sudo chmod +x /opt/qt55/bin/qt55-env.sh
 
 script:
-  - sudo ./opt/qt55/bin/qt55-env.sh
+  - ls /opt
+  - ls /opt/qt55/bin
+  - echo $PATH
+  - ./opt/qt55/bin/qt55-env.sh
   - mkdir -p build && cd build
   - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release
   - make
