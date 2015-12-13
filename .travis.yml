@@ -20,10 +20,10 @@ install:
   - 7zr x -o./qt-creator-build qtcreator_linux-g++-Rhel6.6-x86.7z
 
 before_script:
-  - chmod +x /opt/qt55/bin/qt55-env.sh
+  - sudo chmod +x /opt/qt55/bin/qt55-env.sh
 
 script:
-  - ./opt/qt55/bin/qt55-env.sh
+  - sudo ./opt/qt55/bin/qt55-env.sh
   - mkdir -p build && cd build
   - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release
   - make
