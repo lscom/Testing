@@ -1,0 +1,12 @@
+{
+    \"Name\" : \"TestPlugin\",
+    \"Version\" : \"0.0.1\",
+    \"CompatVersion\" : \"0.0.1\",
+    \"Vendor\" : \"lscom\",
+    \"Copyright\" : \"(C) lscom\",
+    \"License\" : \"MIT\",
+    \"Description\" : \"\",
+    \"Url\" : \"\",
+    $$dependencyList
+}
+
