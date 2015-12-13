@@ -19,14 +19,8 @@ install:
   - wget "http://download.qt.io/snapshots/qtcreator/3.5.1/175/installer_source/qtcreator_linux-g++-Rhel6.6-x86.7z"
   - 7zr x -o./qt-creator-build qtcreator_linux-g++-Rhel6.6-x86.7z
 
-before_script:
-  - sudo chmod +x /opt/qt55/bin/qt55-env.sh
-
 script:
-  - ls /opt
-  - ls /opt/qt55/bin
-  - echo $PATH
-  - ./opt/qt55/bin/qt55-env.sh
+  - source ./opt/qt55/bin/qt55-env.sh
   - mkdir -p build && cd build
   - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release
   - make
