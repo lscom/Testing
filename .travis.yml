@@ -20,6 +20,6 @@ install:
 script:
   - source /opt/qt55/bin/qt55-env.sh
   - mkdir -p build && cd build
-  - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release
+  - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release OUTPUT_PATH="$TRAVIS_BUILD_DIR/build/output"
   - make
 
