@@ -9,9 +9,9 @@ HEADERS += testpluginplugin.h \
 QTCREATOR_SOURCES = $$(QTC_SOURCE)
 IDE_BUILD_TREE = $$(QTC_BUILD)
 
-!isEmpty(OUTPUT_PATH) {
-    USE_USER_DESTDIR = yes
-    DESTDIR = $$OUTPUT_PATH
+!isEmpty(QTC_PLUGIN_DESTDIR) {
+#    USE_USER_DESTDIR = yes
+    DESTDIR = $$QTC_PLUGIN_DESTDIR
 }
 
 include(testplugin_dependencies.pri)

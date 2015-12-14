@@ -6,7 +6,7 @@ compiler:
   - gcc
 
 env:
-  - QTC_SOURCE="$TRAVIS_BUILD_DIR/qt-creator" QTC_BUILD="/opt/qt55/lib/x86_64-linux-gnu" QTC_VERSION="3.5.1"
+  - QTC_SOURCE="$TRAVIS_BUILD_DIR/qt-creator" QTC_VERSION="3.5.1"
 
 before_install:
   - sudo add-apt-repository -y ppa:beineri/opt-qt55-trusty
@@ -19,12 +19,12 @@ install:
 
 script:
   - source /opt/qt55/bin/qt55-env.sh
-  - sudo mkdir -p /opt/qt55/lib/x86_64-linux-gnu/lib/qtcreator
-  - sudo ls /opt/qt55/lib/x86_64-linux-gnu/qtcreator
-  - sudo ln -sf /opt/qt55/lib/x86_64-linux-gnu /opt/qt55/lib/x86_64-linux-gnu/lib
-  - sudo ls /opt/qt55/lib/x86_64-linux-gnu/lib/qtcreator
-  - sudo ls /opt/qt55/lib/x86_64-linux-gnu/lib/qtcreator/plugins
   - mkdir -p build && cd build
-  - qmake ../testplugin.pro -r -spec linux-g++ CONFIG+=release OUTPUT_PATH="$TRAVIS_BUILD_DIR/build/output"
+  - >
+    qmake ../testplugin.pro -r -spec linux-g++
+    CONFIG+=release
+    QTC_PLUGIN_DESTDIR="$TRAVIS_BUILD_DIR/build/output"
+    LIBS+=-L/opt/qt55/lib/x86_64-linux-gnu/qtcreator
+    LIBS+=-L/opt/qt55/lib/x86_64-linux-gnu/qtcreator/plugins
   - make
 
