@@ -13,7 +13,7 @@ before_install:
   - sudo apt-get -qq -y update
 
 install:
-  - sudo apt-get -qq -y install qt55base qt55tools qt55svg qt55creator
+  - sudo apt-get -qq -y install qt55base qt55tools qt55svg qt55creator cppcheck
   - git clone https://github.com/qtproject/qt-creator.git
   - pushd qt-creator && git checkout v3.5.1 && popd
 
@@ -27,4 +27,4 @@ script:
     LIBS+=-L/opt/qt55/lib/x86_64-linux-gnu/qtcreator
     LIBS+=-L/opt/qt55/lib/x86_64-linux-gnu/qtcreator/plugins
   - make
-
+  - cppcheck `git diff --name-only HEAD^ | grep -i '\.cpp\|\.h'`
